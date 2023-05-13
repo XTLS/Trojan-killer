@@ -1,0 +1,49 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+            "listen": "127.0.0.1",
+            "port": 11111,
+            "protocol": "http"
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "trojan",
+            "settings": {
+                "servers": [
+                    {
+                        "address": "127.0.0.1",
+                        "port": 22222,
+                        "password": "password"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                    "serverName": "example.com",
+                    "allowInsecure": true
+                },
+                "sockopt": {
+                    "dialerProxy": "http"
+                }
+            }
+        },
+        {
+            "tag": "http",
+            "protocol": "http",
+            "settings": {
+                "servers": [
+                    {
+                        "address": "127.0.0.1",
+                        "port": 12345
+                    }
+                ]
+            }
+        }
+    ]
+}
